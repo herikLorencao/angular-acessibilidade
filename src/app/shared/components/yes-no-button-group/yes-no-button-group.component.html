@@ -1,8 +1,11 @@
-<div role="radiogroup" [attr.aria-labelledby]="id" class="button-group">
+<div appKey role="radiogroup" [attr.aria-labelledby]="id" class="button-group">
   <label [attr.id]="id" class="label">{{ label }}</label>
   <button
+    appKeyItem
     role="radio"
+    (focused)="activate(options.YES)"
     [attr.aria-checked]="value === options.YES"
+    [attr.tabindex]="value === options.YES || !value ? '0' : '-1'"
     class="button button-yes"
     type="button"
     [class.button-pressed]="value === options.YES"
@@ -11,8 +14,11 @@
     Yes
   </button>
   <button
+    appKeyItem
     role="radio"
-    [attr.aria-checked]="value === options.YES"
+    (focused)="activate(options.NO)"
+    [attr.aria-checked]="value === options.NO"
+    [attr.tabindex]="value === options.NO ? '0' : '-1'"
     class="button button-no"
     type="button"
     [class.button-pressed]="value === options.NO"

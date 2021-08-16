@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   }
 
   submit(): void {
+    this.form.get('yesNoAnswer').disable();
     console.log(this.form.value);
   }
 }

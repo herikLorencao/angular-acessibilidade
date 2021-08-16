@@ -4,6 +4,7 @@
     appKeyItem
     role="radio"
     (focused)="activate(options.YES)"
+    [attr.disabled]="disabled ? disabled : null"
     [attr.aria-checked]="value === options.YES"
     [attr.tabindex]="value === options.YES || !value ? '0' : '-1'"
     class="button button-yes"
@@ -16,6 +17,7 @@
   <button
     appKeyItem
     role="radio"
+    [attr.disabled]="disabled ? disabled : null"
     (focused)="activate(options.NO)"
     [attr.aria-checked]="value === options.NO"
     [attr.tabindex]="value === options.NO ? '0' : '-1'"

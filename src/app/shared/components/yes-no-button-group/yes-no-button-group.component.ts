@@ -24,6 +24,8 @@ import { UniqueIdService } from '../../services/unique-id.service';
 export class YesNoButtonGroupComponent implements ControlValueAccessor {
   @Input() public value: string = null;
   @Input() public label = '';
+  @Input() public disabled = false;
+
   // Devido ao nome da variavel com prefixo Change é possível fazer two-way-data-binding
   // em value
   @Output() public valueChange = new EventEmitter<string>();
@@ -48,7 +50,7 @@ export class YesNoButtonGroupComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.disabled = isDisabled;
   }
 
   activate(value: string) {

@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { UniqueIdService } from '../../services/unique-id.service';
 @Component({
   selector: 'app-yes-no-button-group',
   templateUrl: './yes-no-button-group.component.html',
@@ -20,7 +21,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     },
   ],
 })
-export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
+export class YesNoButtonGroupComponent implements ControlValueAccessor {
   @Input() public value: string = null;
   @Input() public label = '';
   // Devido ao nome da variavel com prefixo Change é possível fazer two-way-data-binding
@@ -29,10 +30,11 @@ export class YesNoButtonGroupComponent implements OnInit, ControlValueAccessor {
   options = YesNoGroupOptions;
   onChange = (value: string) => {};
   onTouched = () => {};
+  id: string = null;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(uniqueIdService: UniqueIdService) {
+    this.id = uniqueIdService.generateUniqueIdWithPrefix('yes-no-button-group');
+  }
 
   writeValue(value: string): void {
     this.value = value;
